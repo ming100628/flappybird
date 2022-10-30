@@ -10,18 +10,17 @@ We will decompose the logic into three classes: `Game`, `Bird`, and `Level`.
 
 ## Getting Started
 
-* Download the [skeleton][skeleton]
-* run webpack using `webpack --watch --mode=development`
-* when webpack is compiling your JS file correctly and loading in your browser move on
+- Download the [skeleton][skeleton]
+- run webpack using `webpack --watch --mode=development`
+- when webpack is compiling your JS file correctly and loading in your browser move on
 
 The skeleton has the following set up:
 
-* A [canvas][canvas-info] with the `id` `bird-game` in our `index.html`
-  * `width` of `640` and a `height` of `480` set on the canvas element
-* An entry file `src/index.js`
-* An [alert][alert-docs], just to check our JS is being loaded correctly
-* A `script` tag in your html document to require the generated `dist/main.js`
-
+- A [canvas][canvas-info] with the `id` `bird-game` in our `index.html`
+  - `width` of `640` and a `height` of `480` set on the canvas element
+- An entry file `src/index.js`
+- An [alert][alert-docs], just to check our JS is being loaded correctly
+- A `script` tag in your html document to require the generated `dist/main.js`
 
 [skeleton]: https://assets.aaonline.io/fullstack/javascript/projects/flappy_bird/skeleton.zip
 [canvas-info]: https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
@@ -33,14 +32,14 @@ The game class will be the main class for the project. It will handle the logic
 for the game, create the other classes, and tell the other classes when to
 render.
 
-* Our `Game` class receives the [canvas][canvas-info] HTML element as an
+- Our `Game` class receives the [canvas][canvas-info] HTML element as an
   argument
-* `canvas.getContext("2d")` will return us an instance of the ['drawing
+- `canvas.getContext("2d")` will return us an instance of the ['drawing
   context'][context-docs]. The drawing context will give us methods which will
-  allow us to actually draw shapes on the page! This is the *most important*
+  allow us to actually draw shapes on the page! This is the _most important_
   variable in this entire project. We will be passing this to all the other
   classes so they can draw pipes and birds and scores and everything on it!
-* The dimensions of the canvas are stored as an instance variable
+- The dimensions of the canvas are stored as an instance variable
 
 [context-docs]: https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext
 
@@ -50,12 +49,12 @@ The `Level` class will be responsible for drawing the background and the
 'pipes', which are the objects that the bird will be flapping through. The level
 will control the logic for how the pipes move and how they are generated.
 
-* The `Level` class, its constructor receives the dimensions from the `Game`
+- The `Level` class, its constructor receives the dimensions from the `Game`
   class and stores them
-* When invoked by the `animate` method, the `drawBackground()` method receives
+- When invoked by the `animate` method, the `drawBackground()` method receives
   the context as an argument, then draws the background on the canvas using the
-  [fillRect][fill-rect-docs] method to fills the entire canvas.  Feel free to
-  replace "skyblue" with your desired background color. 
+  [fillRect][fill-rect-docs] method to fills the entire canvas. Feel free to
+  replace "skyblue" with your desired background color.
 
 #### Notes on `animate()`
 
@@ -74,48 +73,48 @@ parts of the game are updated and drawn appropriately
 
 ### `Game`: Drawing the background
 
-* create an `animate` method in your `Game` class. For now, this method will
+- create an `animate` method in your `Game` class. For now, this method will
   only call `animate` on your `Level` class. (Don't forget to `import` Level!)
-* as you may have noticed, we haven't created an instance of `Level` yet. Make a
+- as you may have noticed, we haven't created an instance of `Level` yet. Make a
   new method on `Game`, `restart`. `restart` will create a new instance of
-  `Level` and store that as an instance variable.  Be sure to pass the
+  `Level` and store that as an instance variable. Be sure to pass the
   dimensions of the canvas to the constructor of `Level`.
-* Next, `restart` will call `animate` on the Game class which _should_ cause the
+- Next, `restart` will call `animate` on the Game class which _should_ cause the
   background to be drawn to the screen! Be sure to pass the ever important
   context to `animate` in the `Level` when you invoke it in `restart`.
-* Finally, it's time to see some color on that canvas! You need to do a few
+- Finally, it's time to see some color on that canvas! You need to do a few
   final things to make this happen:
-  * `import` `Game` into `index.js`
-  * find the canvas using `getElementById`
-  * create a new instance of `Game` using the canvas you found
-  * call `restart` to trigger the first render
-  * do all this after the DOM has loaded
+  - `import` `Game` into `index.js`
+  - find the canvas using `getElementById`
+  - create a new instance of `Game` using the canvas you found
+  - call `restart` to trigger the first render
+  - do all this after the DOM has loaded
 
 [fill-rect-docs]: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillRect
 
 ### `Bird`
 
-* create a new class, `Bird`
-* the bird should start with a velocity instance variable of 0 (it can only move
+- create a new class, `Bird`
+- the bird should start with a velocity instance variable of 0 (it can only move
   up and down)
-* the constructor should take the dimensions of the canvas as arguments, and
+- the constructor should take the dimensions of the canvas as arguments, and
   store them as instance variables. Create instance variables for the position
   of the bird. Set the bird in the middle of the canvas, vertically, and 1/3 of
   the way from the left edge of the canvas.
-* write a `drawBird` method. This should receive the `context` as an argument
+- write a `drawBird` method. This should receive the `context` as an argument
   and draw onto it the bird. I drew the bird as a yellow 40x30 rectangle, which
   looked fabulous. You will use exactly the same methods, `fillRect` and
   `fillStyle`, as in the `Level`.
-* write an `animate` method, for now it should simply draw the bird
+- write an `animate` method, for now it should simply draw the bird
 
 ### `Game`: Adding the Bird
 
-* store an instance of `Bird` as an instance variable in the `restart` method
-* add a call to `animate` the bird in the `Game` `animate` method. Make sure to
+- store an instance of `Bird` as an instance variable in the `restart` method
+- add a call to `animate` the bird in the `Game` `animate` method. Make sure to
   `animate` the bird AFTER the level, or the level will be drawn on top of the
   bird.
-* add a call to `restart` to the constructor
-* when you are rendering a bird and a level, move on.
+- add a call to `restart` to the constructor
+- when you are rendering a bird and a level, move on.
 
 ## Game Principles: 'Realistic' Bird Motion
 
@@ -134,21 +133,21 @@ gravity constant is set to 0.5, at time B velocity will be 1.5.
 
 The final force that changes the bird's velocity and position is the flap of the
 wings. When the bird flaps its wings, the velocity is set to some value, around
-`-8`, 8 pixels *up* per frame (zero is the top). This is different from a real
+`-8`, 8 pixels _up_ per frame (zero is the top). This is different from a real
 bird where the velocity wouldn't just instantly change, that would be
 impossible. In spite of the violation of Newton's laws, it makes the game fun
 and that's what really matters.
 
 ### `Bird` motion
 
-* write a `move` method for the bird. This will be called for every `animate`.
+- write a `move` method for the bird. This will be called for every `animate`.
   Add `this.y` of the bird to its current `this.velocity`.
-* add the Gravity value `0.5` (or whatever you prefer) to the `velocity`
-* add a `flap` method, this should set the `velocity` of the bird to some
+- add the Gravity value `0.5` (or whatever you prefer) to the `velocity`
+- add a `flap` method, this should set the `velocity` of the bird to some
   constant value. I used -8.
-* call the `move` method from within `animate` in the `Bird` class before
+- call the `move` method from within `animate` in the `Bird` class before
   drawing the bird.
-* don't expect the bird to move yet, we haven't implemented an animation loop
+- don't expect the bird to move yet, we haven't implemented an animation loop
   yet!
 
 ### Game Principles: Tunability
@@ -201,21 +200,21 @@ const CONSTANTS = {
 
 ### `Game`: Animation
 
-* add a `play` method to the game class. This should set an instance variable,
+- add a `play` method to the game class. This should set an instance variable,
   `this.running` to `true` and call `animate`.
-* return to your `restart` method. Add to the existing functionality an
+- return to your `restart` method. Add to the existing functionality an
   assignment of `running` to `false`.
-* Currently, `animate` runs once and returns. We want to make it loop and keep
+- Currently, `animate` runs once and returns. We want to make it loop and keep
   animating if the game is running. At the end of `animate` call
   `requestAnimationFrame` and pass `animate` as an argument if the game is
   running
-* At this point, your bird should quickly drop out of view each refresh
-* Make a method, `click` to handle the logic when the canvas is clicked. The
+- At this point, your bird should quickly drop out of view each refresh
+- Make a method, `click` to handle the logic when the canvas is clicked. The
   method should call `flap` on the bird. If the game is not running, the game
   should call `play` first before calling flap.
-* [add an `eventListener`][events-docs] to the canvas for `mousedown`. When the
+- [add an `eventListener`][events-docs] to the canvas for `mousedown`. When the
   event occurs, call `click`. Your bird should now be able to fly.
-* *hint*: your event handler function will need to use `bind` to keep track of
+- _hint_: your event handler function will need to use `bind` to keep track of
   the context
 
 [events-docs]: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
@@ -228,58 +227,58 @@ can do it!
 
 ### `Level`: Obstacles
 
-* Return to `Level`. It should store an array of 3 objects representing the
+- Return to `Level`. It should store an array of 3 objects representing the
   current `pipes`. As you see in the real flappy bird linked in the overview,
   there are never more than 3 pipes on the screen at the same time. Therefore,
   we won't need to keep track of more than 3 pipes at once.
-* A pipe is merely an `x` coordinate and the top of the gap between the pipes.
+- A pipe is merely an `x` coordinate and the top of the gap between the pipes.
   The horizontal spacing between pairs of pipes never changes and the gap
   between a pair through which the bird will flap also remains _constant_.
-* the distance between pairs of pipes is 220 pixels
-* the gap through which the bird will fly is 150 pixels.
-* initialize the `Level` with three pipes, 220 pixels apart
-* write a `movePipes` method. It should move all the pipes by a constant amount
+- the distance between pairs of pipes is 220 pixels
+- the gap through which the bird will fly is 150 pixels.
+- initialize the `Level` with three pipes, 220 pixels apart
+- write a `movePipes` method. It should move all the pipes by a constant amount
   so they will appear to slide across the screen. When a pipe has slid all the
   way off, remove it from the array and add a new pipe to the end of the array.
   The new pipe's gap should be randomly generated.
-* write a `drawPipes` method, this should draw the pipes on the canvas using
+- write a `drawPipes` method, this should draw the pipes on the canvas using
   `fillRect` and `fillStyle`.
-* if your methods are getting long and complicated, factor them into helper
+- if your methods are getting long and complicated, factor them into helper
   methods
-* finally, return to the `animate` method. This should `drawBackground`,
+- finally, return to the `animate` method. This should `drawBackground`,
   `movePipes`, and `drawPipes`. You will be passed the `context` as an argument
   and pass it to `drawPipes` and `drawBackground`.
 
 ### `Game`: Tying it all together
 
-* when the bird flaps and the pipes slide by, move on
+- when the bird flaps and the pipes slide by, move on
 
 ## Collisions
 
-* in the `animate` function of the game we need to see if the bird is colliding
+- in the `animate` function of the game we need to see if the bird is colliding
   with any of the pipes
-* write a `getBounds` method on the `Bird` which returns an object containing
+- write a `getBounds` method on the `Bird` which returns an object containing
   the top left and bottom right coordinates of the bird
-* write a `collidesWith` function in `Level` pass in the `bounds` of the bird as
+- write a `collidesWith` function in `Level` pass in the `bounds` of the bird as
   an argument. It should return true if any pipe intersects the bird.
-* in `Game` if the `Bird` ever `collidesWith` the `level` OR if the `Bird` flaps
+- in `Game` if the `Bird` ever `collidesWith` the `level` OR if the `Bird` flaps
   off the screen, `alert` the player and `restart` the game.
 
 ## Score
 
-* finally, when the `Bird` fully passes a pipe, the player's score should
+- finally, when the `Bird` fully passes a pipe, the player's score should
   increase by 1
-* display on the canvas the current score at all times
-* reset the score when the bird crashes
+- display on the canvas the current score at all times
+- reset the score when the bird crashes
 
 ## Bonus
 
-* actual art instead of rectangles
-* once we start using actual art, we may run in to issues because it takes time
+- actual art instead of rectangles
+- once we start using actual art, we may run in to issues because it takes time
   for these big assets to load. Implement a loading bar so we can be sure our
   assets have finished loading.
-* make a sweet slow moving background to create the illusion of travel
-* sound
-* increasing difficulty
+- make a sweet slow moving background to create the illusion of travel
+- sound
+- increasing difficulty
 
 [bird-demo]: http://flappybird.io/
