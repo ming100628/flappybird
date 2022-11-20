@@ -1,6 +1,6 @@
 const CONSTANTS = {
-  GRAVITY: 0.4,
-  FLAP_SPEED: -12,
+  GRAVITY: 0.3,
+  FLAP_SPEED: -6,
   TERMINAL_VEL: 12,
   BIRD_WIDTH: 40,
   BIRD_HEIGHT: 30,
@@ -17,6 +17,18 @@ export default class Bird {
   move() {
     this.y += this.velocity;
     this.velocity += CONSTANTS.GRAVITY;
+    if (this.velocity > 12) {
+      this.velocity = 12;
+    }
+    if (this.velocity < -12) {
+      this.velocity = -12;
+    }
+    if (this.y < 0) {
+      this.y = 0;
+    }
+    if (this.y > 600) {
+      this.y = 600;
+    }
   }
 
   flap() {

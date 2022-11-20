@@ -40,7 +40,8 @@ export default class Level {
     ctx.fillStyle = "green";
     for (let i = 0; i < pipes.length; i++) {
       const pipe = pipes[i];
-      ctx.fillRect(pipe.x, pipe.y, 30, 100);
+      ctx.fillRect(pipe.x, 0, 30, pipe.y);
+      ctx.fillRect(pipe.x, pipe.y + 150, 30, 640 - pipe.y - 150);
     }
   }
 
