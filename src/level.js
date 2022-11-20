@@ -4,15 +4,15 @@ export default class Level {
     this.pipes = [
       {
         x: 480,
-        y: 50,
+        y: Math.random() * 490,
       },
       {
         x: 480 + 220,
-        y: 100,
+        y: Math.random() * 490,
       },
       {
         x: 480 + 220 + 220,
-        y: 80,
+        y: Math.random() * 490,
       },
     ];
   }
@@ -28,10 +28,14 @@ export default class Level {
     this.pipes = [];
     for (let i = 0; i < pipes.length; i++) {
       const pipe = pipes[i];
-      this.pipes.push({
-        x: pipe.x - 1,
-        y: pipe.y,
-      });
+      if (pipe.x < -30) {
+        this.pipes.push({ x: 660, y: Math.random() * 490 });
+      } else {
+        this.pipes.push({
+          x: pipe.x - 1,
+          y: pipe.y,
+        });
+      }
     }
   }
 
