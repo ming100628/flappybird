@@ -97,7 +97,7 @@ parts of the game are updated and drawn appropriately
 - create a new class, `Bird`
 - the bird should start with a velocity instance variable of 0 (it can only move
   up and down)
-- the constructor should take the dimensions of the canvas as arguments, and
+- the constructor should take the dimensions of the canvas as arguments, and+
   store them as instance variables. Create instance variables for the position
   of the bird. Set the bird in the middle of the canvas, vertically, and 1/3 of
   the way from the left edge of the canvas.
