@@ -48,6 +48,28 @@ export default class Level {
     }
   }
 
+  collidesWith(bounds) {
+    const birdTopLeft = bounds[0];
+    const birdBottomRight = bounds[1];
+    const pipes = this.pipes;
+    for (let i = 0; i < pipes.length; i++) {
+      const pipe = pipes[i];
+      const pipeOneTopLeft = [pipe.x, 0];
+      const pipeOneBottomRight = [pipe.x + 30, pipe.y];
+
+      const pipeTwoTopLeft = [pipe.x, pipe.y + 150];
+      const pipeTwoBottomRight = [pipe.x + 30, 640];
+
+      if (
+        birdBottomRight[0] > pipeOneTopLeft[0] &&
+        birdBottomRight[0] < pipeOneBottomRight[0]
+      ) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   drawPipes(ctx) {
     const pipes = this.pipes;
     ctx.fillStyle = "green";

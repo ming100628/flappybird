@@ -32,6 +32,9 @@ export default class FlappyBird {
   animate() {
     this.level.animate(this.ctx);
     this.bird.animate(this.ctx);
+    if (this.level.collidesWith(this.bird.getBounds())) {
+      this.running = false;
+    }
     if (this.running) {
       requestAnimationFrame(this.animate.bind(this));
     }

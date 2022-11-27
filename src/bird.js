@@ -37,11 +37,21 @@ export default class Bird {
 
   drawBird(ctx) {
     ctx.fillStyle = "yellow";
-    ctx.fillRect(this.x, this.y, 30, 40);
+    ctx.fillRect(this.x, this.y, CONSTANTS.BIRD_WIDTH, CONSTANTS.BIRD_HEIGHT);
   }
 
   animate(ctx) {
     this.move();
     this.drawBird(ctx);
+  }
+
+  getBounds() {
+    const topleft = [this.x, this.y];
+    const bottomright = [
+      this.x + CONSTANTS.BIRD_WIDTH,
+      this.y + CONSTANTS.BIRD_HEIGHT,
+    ];
+    const bounds = [topleft, bottomright];
+    return bounds;
   }
 }
