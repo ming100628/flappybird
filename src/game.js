@@ -45,7 +45,7 @@ export default class FlappyBird {
 
   restart() {
     this.level = new Level(this.dimensions, this);
-    this.bird = new Bird(this.dimensions);
+    this.bird = new Bird(this.dimensions, this);
     this.running = false;
   }
 }

@@ -7,14 +7,23 @@ const CONSTANTS = {
 };
 
 export default class Bird {
-  constructor(dimensions) {
+  constructor(dimensions, game) {
     this.dimensions = dimensions;
     this.velocity = 0;
+    this.x_velocity = -12;
     this.x = dimensions.width / 3;
     this.y = dimensions.height / 2;
+    this.game = game;
   }
 
   move() {
+    if (this.game.gameover) {
+      this.x += this.x_velocity;
+      this.x_velocity += 1;
+      if (this.x_velocity >= 0) {
+        this.x_velocity = 0;
+      }
+    }
     this.y += this.velocity;
     this.velocity += CONSTANTS.GRAVITY;
     if (this.velocity > 12) {
