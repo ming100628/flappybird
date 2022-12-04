@@ -61,10 +61,14 @@ export default class Level {
       const pipeTwoBottomRight = [pipe.x + 30, 640];
 
       if (
-        birdBottomRight[0] > pipeOneTopLeft[0] &&
-        birdBottomRight[0] < pipeOneBottomRight[0] &&
-        pipeOneBottomRight[1] >= birdTopLeft[1] &&
-        pipeOneTopLeft[1] < birdBottomRight[1]
+        (birdBottomRight[0] > pipeOneTopLeft[0] &&
+          birdTopLeft[0] < pipeOneBottomRight[0] &&
+          pipeOneBottomRight[1] >= birdTopLeft[1] &&
+          pipeOneTopLeft[1] < birdBottomRight[1]) ||
+        (birdBottomRight[0] > pipeTwoTopLeft[0] &&
+          birdTopLeft[0] < pipeTwoBottomRight[0] &&
+          pipeTwoBottomRight[1] >= birdTopLeft[1] &&
+          pipeTwoTopLeft[1] < birdBottomRight[1])
       ) {
         return true;
       }
