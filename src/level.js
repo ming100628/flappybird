@@ -35,7 +35,7 @@ export default class Level {
       if (pipe.x < -30) {
         this.pipes.push({ x: 660, y: Math.random() * 490, c: false });
       } else {
-        if (pipe.x - 1 < 160 && pipe.c == false) {
+        if (pipe.x - 1 < 130 && pipe.c == false) {
           this.score += 1;
           pipe.c = true;
         }

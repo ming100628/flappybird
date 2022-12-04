@@ -26,8 +26,8 @@ export default class Bird {
     if (this.y < 0) {
       this.y = 0;
     }
-    if (this.y > 600) {
-      this.y = 600;
+    if (this.y > this.dimensions.height - CONSTANTS.BIRD_HEIGHT) {
+      this.y = this.dimensions.height - CONSTANTS.BIRD_HEIGHT;
     }
   }
 
