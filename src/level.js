@@ -62,7 +62,9 @@ export default class Level {
 
       if (
         birdBottomRight[0] > pipeOneTopLeft[0] &&
-        birdBottomRight[0] < pipeOneBottomRight[0]
+        birdBottomRight[0] < pipeOneBottomRight[0] &&
+        pipeOneBottomRight[1] >= birdTopLeft[1] &&
+        pipeOneTopLeft[1] < birdBottomRight[1]
       ) {
         return true;
       }
