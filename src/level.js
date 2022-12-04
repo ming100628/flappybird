@@ -1,5 +1,5 @@
 export default class Level {
-  constructor(dimensions) {
+  constructor(dimensions, game) {
     this.score = 0;
     this.dimensions = dimensions;
     this.pipes = [
@@ -19,6 +19,7 @@ export default class Level {
         c: false,
       },
     ];
+    this.game = game;
   }
 
   animate(ctx) {
@@ -28,6 +29,7 @@ export default class Level {
   }
 
   movePipes() {
+    if (this.game.gameover) return;
     const pipes = this.pipes;
     this.pipes = [];
     for (let i = 0; i < pipes.length; i++) {

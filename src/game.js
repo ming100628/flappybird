@@ -7,11 +7,14 @@ export default class FlappyBird {
     this.dimensions = { width: canvas.width, height: canvas.height };
     this.restart();
     this.registerEventListener();
+    this.gameover = false;
   }
 
   registerEventListener() {
     addEventListener("click", () => {
-      this.bird.flap();
+      if (this.gameover == false) {
+        this.bird.flap();
+      }
       console.log("flapping!");
     });
   }
@@ -33,7 +36,7 @@ export default class FlappyBird {
     this.level.animate(this.ctx);
     this.bird.animate(this.ctx);
     if (this.level.collidesWith(this.bird.getBounds())) {
-      this.running = false;
+      this.gameover = true;
     }
     if (this.running) {
       requestAnimationFrame(this.animate.bind(this));
@@ -41,7 +44,7 @@ export default class FlappyBird {
   }
 
   restart() {
-    this.level = new Level(this.dimensions);
+    this.level = new Level(this.dimensions, this);
     this.bird = new Bird(this.dimensions);
     this.running = false;
   }
