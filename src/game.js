@@ -1,6 +1,8 @@
 import Level from "./level";
 import Bird from "./bird";
 
+const restartButton = document.getElementById("restart-button");
+
 export default class FlappyBird {
   constructor(canvas) {
     this.ctx = canvas.getContext("2d");
@@ -11,6 +13,10 @@ export default class FlappyBird {
   }
 
   registerEventListener() {
+    restartButton.addEventListener("click", () => {
+      this.restart();
+      console.log("restarting");
+    });
     addEventListener("click", () => {
       if (this.gameover == false) {
         this.bird.flap();
@@ -46,6 +52,7 @@ export default class FlappyBird {
   restart() {
     this.level = new Level(this.dimensions, this);
     this.bird = new Bird(this.dimensions, this);
-    this.running = false;
+    this.running = true;
+    this.gameover = false;
   }
 }
