@@ -19,13 +19,95 @@ export default class Level {
         c: false,
       },
     ];
+    this.stars = [
+      {
+        x: Math.random() * 480,
+        y: Math.random() * 640,
+      },
+      {
+        x: Math.random() * 480,
+        y: Math.random() * 640,
+      },
+      {
+        x: Math.random() * 480,
+        y: Math.random() * 640,
+      },
+      {
+        x: Math.random() * 480,
+        y: Math.random() * 640,
+      },
+      {
+        x: Math.random() * 480,
+        y: Math.random() * 640,
+      },
+      {
+        x: Math.random() * 480,
+        y: Math.random() * 640,
+      },
+      {
+        x: Math.random() * 480,
+        y: Math.random() * 640,
+      },
+      {
+        x: Math.random() * 480,
+        y: Math.random() * 640,
+      },
+      {
+        x: Math.random() * 480,
+        y: Math.random() * 640,
+      },
+      {
+        x: Math.random() * 480,
+        y: Math.random() * 640,
+      },
+      {
+        x: Math.random() * 480,
+        y: Math.random() * 640,
+      },
+      {
+        x: Math.random() * 480,
+        y: Math.random() * 640,
+      },
+      {
+        x: Math.random() * 480,
+        y: Math.random() * 640,
+      },
+      {
+        x: Math.random() * 480,
+        y: Math.random() * 640,
+      },
+      {
+        x: Math.random() * 480,
+        y: Math.random() * 640,
+      },
+      {
+        x: Math.random() * 480,
+        y: Math.random() * 640,
+      },
+      {
+        x: Math.random() * 480,
+        y: Math.random() * 640,
+      },
+      {
+        x: Math.random() * 480,
+        y: Math.random() * 640,
+      },
+    ];
     this.game = game;
   }
 
   animate(ctx) {
     this.drawBackground(ctx);
+    this.drawStars(ctx);
+    this.moveStars();
     this.drawPipes(ctx);
     this.movePipes();
+  }
+
+  drawStars(ctx) {
+    for (let i = 0; i < this.stars.length; i++) {
+      this.drawStar(ctx, this.stars[i].x, this.stars[i].y, 6, 1.0, 0.5);
+    }
   }
 
   movePipes() {
@@ -89,11 +171,58 @@ export default class Level {
   }
 
   drawBackground(ctx) {
-    ctx.fillStyle = "skyblue";
-    ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
     ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
+    ctx.fillStyle = "white";
 
     ctx.font = "48px serif";
     ctx.fillText(this.score, 10, 50);
+  }
+
+  drawStar(ctx, cx, cy, spikes, outerRadius, innerRadius) {
+    var rot = (Math.PI / 2) * 3;
+    var x = cx;
+    var y = cy;
+    var step = Math.PI / spikes;
+
+    ctx.beginPath();
+    ctx.moveTo(cx, cy - outerRadius);
+
+    for (let i = 0; i < spikes; i++) {
+      x = cx + Math.cos(rot) * outerRadius;
+      y = cy + Math.sin(rot) * outerRadius;
+      ctx.lineTo(x, y);
+      rot += step;
+
+      x = cx + Math.cos(rot) * innerRadius;
+      y = cy + Math.sin(rot) * innerRadius;
+      ctx.lineTo(x, y);
+      rot += step;
+    }
+    ctx.lineTo(cx, cy - outerRadius);
+    ctx.closePath();
+    ctx.lineWidth = 5;
+    ctx.strokeStyle = "yellow";
+    ctx.stroke();
+    ctx.fillStyle = "yellow";
+    ctx.fill();
+  }
+
+  moveStars() {
+    if (this.game.gameover) return;
+
+    const stars = this.stars;
+    this.stars = [];
+    for (let i = 0; i < stars.length; i++) {
+      const star = stars[i];
+      if (star.x < -3) {
+        this.stars.push({ x: 480, y: Math.random() * 490 });
+      } else {
+        this.stars.push({
+          x: star.x - 0.2,
+          y: star.y,
+        });
+      }
+    }
   }
 }
