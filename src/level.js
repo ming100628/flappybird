@@ -169,6 +169,8 @@ export default class Level {
       ctx.fillRect(pipe.x, pipe.y + 150, 30, 640 - pipe.y - 150);
       ctx.drawImage(sprite, 56, 330, 28, 160, pipe.x, pipe.y - 145, 30, 150);
       ctx.drawImage(sprite, 84, 320, 28, 160, pipe.x, pipe.y + 150, 30, 150);
+      ctx.drawImage(sprite, 84, 400, 28, 1, pipe.x, 0, 30, pipe.y - 145);
+      ctx.drawImage(sprite, 84, 400, 28, 1, pipe.x, pipe.y + 300, 30, 490);
     }
   }
 
