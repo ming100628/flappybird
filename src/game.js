@@ -1,5 +1,6 @@
 import Level from "./level";
 import Bird from "./bird";
+import Menu from "./menu";
 
 const restartButton = document.getElementById("restart-button");
 const birdGame = document.getElementById("bird-game");
@@ -41,6 +42,9 @@ export default class FlappyBird {
   animate() {
     this.level.animate(this.ctx);
     this.bird.animate(this.ctx);
+    if (this.gameover) {
+      this.menu.animate(this.ctx);
+    }
     if (this.level.collidesWith(this.bird.getBounds())) {
       this.gameover = true;
     }
@@ -52,6 +56,7 @@ export default class FlappyBird {
   restart() {
     this.level = new Level(this.dimensions, this);
     this.bird = new Bird(this.dimensions, this);
+    this.menu = new Menu(this.dimensions, this);
     this.running = true;
     this.gameover = false;
   }
