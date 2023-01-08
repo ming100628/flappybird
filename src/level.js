@@ -167,16 +167,23 @@ export default class Level {
       const pipe = pipes[i];
       ctx.fillRect(pipe.x, 0, 30, pipe.y);
       ctx.fillRect(pipe.x, pipe.y + 150, 30, 640 - pipe.y - 150);
+      ctx.drawImage(sprite, 56, 330, 28, 160, pipe.x, pipe.y - 145, 30, 150);
+      ctx.drawImage(sprite, 84, 320, 28, 160, pipe.x, pipe.y + 150, 30, 150);
     }
   }
 
   drawBackground(ctx) {
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
-    ctx.fillStyle = "white";
-
-    ctx.font = "48px serif";
-    ctx.fillText(this.score, 10, 50);
+    if (this.game.started) {
+      ctx.fillStyle = "white";
+      ctx.font = "48px serif";
+      ctx.fillText(
+        this.score,
+        this.dimensions.width / 2,
+        this.dimensions.height / 3
+      );
+    }
   }
 
   drawStar(ctx, cx, cy, spikes, outerRadius, innerRadius) {

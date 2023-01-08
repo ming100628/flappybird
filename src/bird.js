@@ -2,8 +2,8 @@ const CONSTANTS = {
   GRAVITY: 0.3,
   FLAP_SPEED: -4,
   TERMINAL_VEL: 12,
-  BIRD_WIDTH: 40,
-  BIRD_HEIGHT: 30,
+  BIRD_WIDTH: 50,
+  BIRD_HEIGHT: 50,
 };
 
 export default class Bird {
@@ -24,8 +24,10 @@ export default class Bird {
         this.x_velocity = 0;
       }
     }
-    this.y += this.velocity;
-    this.velocity += CONSTANTS.GRAVITY;
+    if (this.game.started) {
+      this.y += this.velocity;
+      this.velocity += CONSTANTS.GRAVITY;
+    }
     if (this.velocity > 12) {
       this.velocity = 12;
     }
@@ -45,8 +47,19 @@ export default class Bird {
   }
 
   drawBird(ctx) {
-    ctx.fillStyle = "yellow";
-    ctx.fillRect(this.x, this.y, CONSTANTS.BIRD_WIDTH, CONSTANTS.BIRD_HEIGHT);
+    // ctx.fillStyle = "yellow";
+    // ctx.fillRect(this.x, this.y, CONSTANTS.BIRD_WIDTH, CONSTANTS.BIRD_HEIGHT);
+    ctx.drawImage(
+      sprite,
+      Math.floor(Math.random() * 3) * 28,
+      486,
+      26,
+      26,
+      this.x,
+      this.y,
+      CONSTANTS.BIRD_WIDTH * 1.25,
+      CONSTANTS.BIRD_HEIGHT * 1.25
+    );
   }
 
   animate(ctx) {

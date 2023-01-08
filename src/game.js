@@ -10,6 +10,7 @@ export default class FlappyBird {
     this.restart();
     this.registerEventListener();
     this.gameover = false;
+    this.started = false;
   }
 
   registerEventListener() {
@@ -18,6 +19,8 @@ export default class FlappyBird {
       console.log("restarting");
     });
     birdGame.addEventListener("click", () => {
+      this.started = true;
+
       if (this.gameover == false) {
         this.bird.flap();
       }
@@ -26,15 +29,12 @@ export default class FlappyBird {
   }
 
   click() {
-    if (this.running) {
-      this.animate();
-    }
+    this.animate();
     this.bird.flap();
   }
 
   play() {
     this.restart();
-    this.running = true;
     this.animate();
   }
 
