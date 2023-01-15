@@ -35,6 +35,27 @@ export default class FlappyBird {
         this.restart();
       }
     });
+    birdGame.addEventListener("click", (event) => {
+      if (
+        this.gameover &&
+        168 < event.x &&
+        event.x < 328 &&
+        409 < event.y &&
+        event.y < 447
+      ) {
+        this.postScore(this.level.score);
+      }
+    });
+  }
+
+  postScore(score) {
+    fetch("/game/highscore", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ score: score, game: "flappybird" }),
+    }).then((res) => {
+      console.log("Request complete! response:", res);
+    });
   }
 
   click() {
