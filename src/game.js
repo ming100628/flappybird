@@ -1,7 +1,6 @@
 import Level from "./level";
 import Bird from "./bird";
 import Menu from "./menu";
-
 const restartButton = document.getElementById("restart-button");
 const birdGame = document.getElementById("bird-game");
 export default class FlappyBird {
@@ -17,7 +16,6 @@ export default class FlappyBird {
   registerEventListener() {
     restartButton.addEventListener("click", () => {
       this.restart();
-      console.log("restarting");
     });
     birdGame.addEventListener("click", () => {
       this.started = true;
@@ -25,7 +23,17 @@ export default class FlappyBird {
       if (this.gameover == false) {
         this.bird.flap();
       }
-      console.log("flapping!");
+    });
+    birdGame.addEventListener("click", (event) => {
+      if (
+        this.gameover &&
+        168 < event.x &&
+        event.x < 328 &&
+        349 < event.y &&
+        event.y < 387
+      ) {
+        this.restart();
+      }
     });
   }
 
